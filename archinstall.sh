@@ -95,6 +95,10 @@ sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 pacman -Sy --noconfirm networkmanager
 systemctl enable NetworkManager
 
+# Instalar VirtualBox Guest Additions para mejorar la integración en la VM
+pacman -Sy --noconfirm virtualbox-guest-utils
+systemctl enable vboxservice
+
 EOF
 
 # 7. Instalación de i3, Polybar y utilidades adicionales
