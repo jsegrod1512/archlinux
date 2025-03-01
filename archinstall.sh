@@ -58,7 +58,7 @@ mount "$BOOT_PART" /mnt/boot
 
 # 4. Instalación del sistema base
 echo "Instalando el sistema base..."
-pacstrap /mnt base base-devel linux linux-firmware vim git
+pacstrap /mnt base base-devel linux linux-firmware vim git xorg-server xorg-xinit
 
 # 5. Generar fstab
 echo "Generando fstab..."
