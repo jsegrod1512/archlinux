@@ -72,6 +72,8 @@ arch-chroot /mnt /bin/bash <<EOF
     locale-gen
     echo "LANG=es_ES.UTF-8" > /etc/locale.conf
     loadkeys es
+    # Configura el teclado también en la interfaz
+    setxkbmap es
 
     # 6.3. Configurar hostname
     echo "$HOSTNAME" > /etc/hostname
@@ -170,6 +172,7 @@ arch-chroot /mnt /bin/bash <<EOF
 
     # Establecer wallpaper con feh (opcional)
     # exec --no-startup-id feh --bg-scale /ruta/a/tu/wallpaper.jpg
+    EOT'
 EOF
 
 echo "===== [7/7] FINALIZANDO INSTALACION ====="
