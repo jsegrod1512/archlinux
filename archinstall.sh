@@ -106,35 +106,67 @@ arch-chroot /mnt /bin/bash <<EOF
 
     # 6.11. Crear configuración personalizada de i3 para evitar el prompt inicial
     su - $USER -c 'mkdir -p ~/.config/i3'
-    su - $USER -c 'cat <<EOF > ~/.config/i3/config
-    # Configuración personalizada de i3
+    su - usuario -c 'cat <<EOT > ~/.config/i3/config
+    # Ejemplo de archivo ~/.config/i3/config
 
-    # Define la tecla modificadora (Mod4 = Super/Windows)
-    set \$mod Mod4
+    ############################################
+    #           VARIABLES Y AJUSTES
+    ############################################
 
-    # Define el terminal predeterminado (puedes cambiarlo a tu terminal preferido)
-    set \$term alacritty
+    # Tecla modificadora: la variable se llama $mod
+    set $mod Mod4
 
-    # Inicia Polybar (ajusta "mybar" según tu configuración)
+    # Fuente por defecto (usa pango, terminus, etc.)
+    font pango:monospace 10
+
+    ############################################
+    #           COMANDOS BÁSICOS
+    ############################################
+
+    # Abrir la terminal (Alacritty)
+    bindsym $mod+Return exec alacritty
+
+    # Cerrar ventana
+    bindsym $mod+Shift+q kill
+
+    # Lanzar dmenu
+    bindsym $mod+d exec dmenu_run
+
+    ############################################
+    #           MOVIMIENTO Y FOCUS
+    ############################################
+
+    # Cambiar foco entre ventanas
+    bindsym $mod+j focus left
+    bindsym $mod+k focus down
+    bindsym $mod+l focus up
+    bindsym $mod+semicolon focus right
+
+    # Cambiar de workspace
+    bindsym $mod+1 workspace 1
+    bindsym $mod+2 workspace 2
+
+    ############################################
+    #           POLYBAR
+    ############################################
+
+    # Ejecutar Polybar (requiere un archivo de config en ~/.config/polybar/config)
     exec --no-startup-id polybar mybar
 
-    # Ejemplo de binding para abrir una terminal
-    bindsym \$mod+Return exec \$term
+    ############################################
+    #           GAPS (SOLO i3-gaps)
+    ############################################
 
-    # Cierra la ventana actual
-    bindsym \$mod+Shift+q kill
+    gaps inner 10
+    gaps outer 10
 
-    # Cambia entre ventanas
-    bindsym \$mod+j focus left
-    bindsym \$mod+k focus down
-    bindsym \$mod+l focus up
-    bindsym \$mod+semicolon focus right
+    ############################################
+    #           OTROS COMANDOS O LÍNEAS
+    ############################################
 
-    # Define un layout predeterminado
-    workspace 1: Terminal
-
-    # Incluir más configuraciones personalizadas según tus necesidades...
-    EOF'
+    # Puedes añadir más binds, por ejemplo para rofi, etc.
+    # bindsym $mod+r exec rofi -show run
+    EOT'
 
     #6.12. Configuramos polybar copiando un ejemplo
     su - $USER -c 'mkdir -p ~/.config/polybar'
