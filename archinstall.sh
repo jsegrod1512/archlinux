@@ -75,10 +75,11 @@ arch-chroot /mnt /bin/bash <<EOF
 ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
 hwclock --systohc
 
-# Localización mínima: habilitar en_US.UTF-8
-echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+# Configurar localización y teclado en español
+echo "es_ES.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
+echo "LANG=es_ES.UTF-8" > /etc/locale.conf
+loadkeys es
 
 # Configurar hostname
 echo "$HOSTNAME" > /etc/hostname
@@ -107,6 +108,5 @@ arch-chroot /mnt /bin/bash <<'EOF'
 pacman -Sy --noconfirm i3-wm i3status polybar dmenu rofi
 EOF
 
-echo "Instalación completa. No olvides configurar i3 y Polybar según tus preferencias.
-Para personalizar Polybar, puedes copiar archivos de ejemplo desde /usr/share/doc/polybar/example/ y modificarlos."
-echo "Cuando estés listo, desmonta y reinicia la máquina virtual."
+echo "Instalación completa. Ahora viene la configuración de i3 y Polybar."
+echo "Cuando estés listo, desmonta la iso y reinicia el sistema."
