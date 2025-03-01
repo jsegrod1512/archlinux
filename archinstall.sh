@@ -107,37 +107,35 @@ arch-chroot /mnt /bin/bash <<EOF
     # 6.11. Crear configuración personalizada de i3 para evitar el prompt inicial
     su - $USER -c 'mkdir -p ~/.config/i3'
     su - usuario -c 'cat <<EOT > ~/.config/i3/config
-    # Ejemplo de archivo ~/.config/i3/config
-
     ############################################
-    #           VARIABLES Y AJUSTES
+    #       Configuración predeterminada i3
     ############################################
 
-    # Tecla modificadora: la variable se llama $mod
-    set $mod Mod4
+    # Define la tecla modificadora: Mod4 (tecla Alt)
+    set $mod Mod1
 
-    # Terminal por defecto
+    # Define la terminal predeterminada (alacritty, por ejemplo)
     set $term alacritty
 
-    # Fuente por defecto (usa pango, terminus, etc.)
+    # Fuente para títulos y barra (usando pango)
     font pango:monospace 10
 
     ############################################
-    #           COMANDOS BÁSICOS
+    #       Arranque de aplicaciones
     ############################################
 
-    # Abrir la terminal (Alacritty)
+    # Ejecuta Polybar con la configuración "mybar" (asegúrate de tener un archivo de configuración en ~/.config/polybar/config)
+    exec --no-startup-id polybar mybar
+
+    ############################################
+    #       Atajos de teclado básicos
+    ############################################
+
+    # Abrir la terminal
     bindsym $mod+Return exec $term
 
     # Cerrar ventana
     bindsym $mod+Shift+q kill
-
-    # Lanzar dmenu
-    bindsym $mod+d exec dmenu_run
-
-    ############################################
-    #           MOVIMIENTO Y FOCUS
-    ############################################
 
     # Cambiar foco entre ventanas
     bindsym $mod+j focus left
@@ -149,31 +147,29 @@ arch-chroot /mnt /bin/bash <<EOF
     bindsym $mod+1 workspace 1
     bindsym $mod+2 workspace 2
 
-    ############################################
-    #           POLYBAR
-    ############################################
+    # Recargar la configuración de i3
+    bindsym $mod+Shift+c reload
 
-    # Ejecutar Polybar (requiere un archivo de config en ~/.config/polybar/config)
-    exec --no-startup-id polybar mybar
+    # Salir de i3 (logout)
+    bindsym $mod+Shift+e exit
 
     ############################################
-    #           GAPS (SOLO i3-gaps)
+    #       Configuración de gaps (i3-gaps)
     ############################################
 
     gaps inner 10
     gaps outer 10
 
     ############################################
-    #           OTROS COMANDOS O LÍNEAS
+    #       Otros comandos y ajustes
     ############################################
 
-    # Puedes añadir más binds, por ejemplo para rofi, etc.
-    # bindsym $mod+r exec rofi -show run
-    EOT'
+    # Puedes añadir aquí más bindings o comandos para iniciar otras aplicaciones,
+    # por ejemplo, lanzar rofi:
+    # bindsym $mod+d exec rofi -show run
 
-    #6.12. Configuramos polybar copiando un ejemplo
-    su - $USER -c 'mkdir -p ~/.config/polybar'
-    su - $USER -c 'cp /usr/share/doc/polybar/example/config ~/.config/polybar/config'
+    # Establecer wallpaper con feh (opcional)
+    # exec --no-startup-id feh --bg-scale /ruta/a/tu/wallpaper.jpg
 EOF
 
 echo "===== [7/7] FINALIZANDO INSTALACION ====="
