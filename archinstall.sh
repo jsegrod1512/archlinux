@@ -113,5 +113,6 @@ echo "Desmontando particiones y desactivando swap..."
 umount -R /mnt
 swapoff "$SWAP_PART"
 
-echo "Instalación finalizada. Reiniciando el sistema..."
+echo "Instalación finalizada. Reiniciando el sistema en 30 segundos... Recuerda desmontar el disco"
+sleep 30
 reboot
