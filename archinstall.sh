@@ -113,11 +113,11 @@ arch-chroot /mnt /bin/bash <<EOF
     #       Configuración predeterminada i3
     ############################################
 
-    # Define la tecla modificadora: Mod4 (tecla Alt)
-    set $mod Mod1
+    # Define la tecla modificadora: Mod4 (tecla Windows)
+    set \$mod Mod4
 
     # Define la terminal predeterminada (alacritty, por ejemplo)
-    set $term alacritty
+    set \$term alacritty
 
     # Fuente para títulos y barra (usando pango)
     font pango:monospace 10
@@ -134,26 +134,26 @@ arch-chroot /mnt /bin/bash <<EOF
     ############################################
 
     # Abrir la terminal
-    bindsym $mod+Return exec $term
+    bindsym \$mod+Return exec \$term
 
     # Cerrar ventana
-    bindsym $mod+Shift+q kill
+    bindsym \$mod+Shift+q kill
 
     # Cambiar foco entre ventanas
-    bindsym $mod+j focus left
-    bindsym $mod+k focus down
-    bindsym $mod+l focus up
-    bindsym $mod+semicolon focus right
+    bindsym \$mod+j focus left
+    bindsym \$mod+k focus down
+    bindsym \$mod+l focus up
+    bindsym \$mod+semicolon focus right
 
     # Cambiar de workspace
-    bindsym $mod+1 workspace 1
-    bindsym $mod+2 workspace 2
+    bindsym \$mod+1 workspace 1
+    bindsym \$mod+2 workspace 2
 
     # Recargar la configuración de i3
-    bindsym $mod+Shift+c reload
+    bindsym \$mod+Shift+c reload
 
     # Salir de i3 (logout)
-    bindsym $mod+Shift+e exit
+    bindsym \$mod+Shift+e exit
 
     ############################################
     #       Configuración de gaps (i3-gaps)
@@ -168,7 +168,7 @@ arch-chroot /mnt /bin/bash <<EOF
 
     # Puedes añadir aquí más bindings o comandos para iniciar otras aplicaciones,
     # por ejemplo, lanzar rofi:
-    # bindsym $mod+d exec rofi -show run
+    # bindsym \$mod+d exec rofi -show run
 
     # Establecer wallpaper con feh (opcional)
     # exec --no-startup-id feh --bg-scale /ruta/a/tu/wallpaper.jpg
