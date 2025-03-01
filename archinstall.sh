@@ -71,6 +71,13 @@ echo "UUID=${SWAP_UUID} none swap sw 0 0" >> /mnt/etc/fstab
 # 6. Configuración básica en chroot
 echo "Realizando configuración básica..."
 arch-chroot /mnt /bin/bash <<EOF
+# Instalar GRUB
+pacman -Sy --noconfirm grub
+# Instalar GRUB en el disco (asumiendo modo BIOS con etiqueta msdos)
+grub-install --target=i386-pc $DISK
+# Generar el archivo de configuración de GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
+
 # Configurar zona horaria y reloj
 ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
 hwclock --systohc
