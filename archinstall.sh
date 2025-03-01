@@ -102,7 +102,7 @@ arch-chroot /mnt /bin/bash <<EOF
     systemctl enable lightdm
 
     # 6.10. Instalar i3, Polybar y utilidades
-    pacman -Sy --noconfirm i3-gaps i3-wm i3status polybar dmenu rofi
+    pacman -Sy --noconfirm i3-gaps i3-wm i3status polybar dmenu rofi alacritty
 
     # 6.11. Crear configuración personalizada de i3 para evitar el prompt inicial
     su - $USER -c 'mkdir -p ~/.config/i3'
