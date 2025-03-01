@@ -116,6 +116,9 @@ arch-chroot /mnt /bin/bash <<EOF
     # Tecla modificadora: la variable se llama $mod
     set $mod Mod4
 
+    # Terminal por defecto
+    set $term alacritty
+
     # Fuente por defecto (usa pango, terminus, etc.)
     font pango:monospace 10
 
@@ -124,7 +127,7 @@ arch-chroot /mnt /bin/bash <<EOF
     ############################################
 
     # Abrir la terminal (Alacritty)
-    bindsym $mod+Return exec alacritty
+    bindsym $mod+Return exec $term
 
     # Cerrar ventana
     bindsym $mod+Shift+q kill
