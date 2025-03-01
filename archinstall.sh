@@ -63,49 +63,82 @@ echo "UUID=$SWAP_UUID none swap sw 0 0" >> /mnt/etc/fstab
 
 echo "===== [6/7] CONFIGURACION EN CHROOT ====="
 arch-chroot /mnt /bin/bash <<EOF
-  # 6.1. Configurar zona horaria y reloj
-  ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
-  hwclock --systohc
+    # 6.1. Configurar zona horaria y reloj
+    ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
+    hwclock --systohc
 
-  # 6.2. Configurar localización y teclado en español
-  echo "es_ES.UTF-8 UTF-8" >> /etc/locale.gen
-  locale-gen
-  echo "LANG=es_ES.UTF-8" > /etc/locale.conf
-  loadkeys es
+    # 6.2. Configurar localización y teclado en español
+    echo "es_ES.UTF-8 UTF-8" >> /etc/locale.gen
+    locale-gen
+    echo "LANG=es_ES.UTF-8" > /etc/locale.conf
+    loadkeys es
 
-  # 6.3. Configurar hostname
-  echo "$HOSTNAME" > /etc/hostname
+    # 6.3. Configurar hostname
+    echo "$HOSTNAME" > /etc/hostname
 
-  # 6.4. Establecer contraseña de root
-  echo "root:$ROOT_PASSWORD" | chpasswd
+    # 6.4. Establecer contraseña de root
+    echo "root:$ROOT_PASSWORD" | chpasswd
 
-  # 6.5. Crear usuario y agregarlo al grupo wheel para sudo
-  useradd -m -G wheel $USER
-  echo "$USER:$USER_PASSWORD" | chpasswd
-  sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
+    # 6.5. Crear usuario y agregarlo al grupo wheel para sudo
+    useradd -m -G wheel $USER
+    echo "$USER:$USER_PASSWORD" | chpasswd
+    sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 
-  # 6.6. Instalar y habilitar NetworkManager
-  pacman -Sy --noconfirm networkmanager
-  systemctl enable NetworkManager
+    # 6.6. Instalar y habilitar NetworkManager
+    pacman -Sy --noconfirm networkmanager
+    systemctl enable NetworkManager
 
-  # 6.7. Instalar y habilitar VirtualBox Guest Additions (opcional)
-  pacman -Sy --noconfirm virtualbox-guest-utils
-  systemctl enable vboxservice
+    # 6.7. Instalar y habilitar VirtualBox Guest Additions (opcional)
+    pacman -Sy --noconfirm virtualbox-guest-utils
+    systemctl enable vboxservice
 
-  # 6.8. Instalar GRUB (modo BIOS/MBR) y generar configuración
-  pacman -Sy --noconfirm grub os-prober
-  grub-install --target=i386-pc $DISK
-  grub-mkconfig -o /boot/grub/grub.cfg
+    # 6.8. Instalar GRUB (modo BIOS/MBR) y generar configuración
+    pacman -Sy --noconfirm grub os-prober
+    grub-install --target=i386-pc $DISK
+    grub-mkconfig -o /boot/grub/grub.cfg
 
-  # 6.9. Instalar LightDM (display manager) y habilitarlo
-  pacman -Sy --noconfirm lightdm lightdm-gtk-greeter
-  systemctl enable lightdm
+    # 6.9. Instalar LightDM (display manager) y habilitarlo
+    pacman -Sy --noconfirm lightdm lightdm-gtk-greeter
+    systemctl enable lightdm
 
-  # 6.10. Instalar i3, Polybar y utilidades
-  pacman -Sy --noconfirm i3-gaps i3-wm i3status polybar dmenu rofi
+    # 6.10. Instalar i3, Polybar y utilidades
+    pacman -Sy --noconfirm i3-gaps i3-wm i3status polybar dmenu rofi
 
-  # 6.11. Crear .xinitrc para arrancar i3 (opcional si usas LightDM)
-  su - $USER -c 'echo "exec i3" > ~/.xinitrc'
+    # 6.11. Crear configuración personalizada de i3 para evitar el prompt inicial
+    su - $USER -c 'mkdir -p ~/.config/i3'
+    su - $USER -c 'cat <<EOF > ~/.config/i3/config
+    # Configuración personalizada de i3
+
+    # Define la tecla modificadora (Mod4 = Super/Windows)
+    set \$mod Mod4
+
+    # Define el terminal predeterminado (puedes cambiarlo a tu terminal preferido)
+    set \$term alacritty
+
+    # Inicia Polybar (ajusta "mybar" según tu configuración)
+    exec --no-startup-id polybar mybar
+
+    # Ejemplo de binding para abrir una terminal
+    bindsym \$mod+Return exec \$term
+
+    # Cierra la ventana actual
+    bindsym \$mod+Shift+q kill
+
+    # Cambia entre ventanas
+    bindsym \$mod+j focus left
+    bindsym \$mod+k focus down
+    bindsym \$mod+l focus up
+    bindsym \$mod+semicolon focus right
+
+    # Define un layout predeterminado
+    workspace 1: Terminal
+
+    # Incluir más configuraciones personalizadas según tus necesidades...
+    EOF'
+
+    #6.12. Configuramos polybar copiando un ejemplo
+    su - $USER -c 'mkdir -p ~/.config/polybar'
+    su - $USER -c 'cp /usr/share/doc/polybar/example/config ~/.config/polybar/config'
 EOF
 
 echo "===== [7/7] FINALIZANDO INSTALACION ====="
