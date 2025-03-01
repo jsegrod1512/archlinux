@@ -108,7 +108,7 @@ arch-chroot /mnt /bin/bash <<EOF
 
     # 6.11. Crear configuración personalizada de i3 para evitar el prompt inicial
     su - $USER -c 'mkdir -p ~/.config/i3'
-    su - usuario -c "cat <<'EOT' > ~/.config/i3/config
+    su - $USER -c "cat <<'EOT' > ~/.config/i3/config
     ############################################
     #       Configuración predeterminada i3
     ############################################
@@ -126,7 +126,7 @@ arch-chroot /mnt /bin/bash <<EOF
     #       Arranque de aplicaciones
     ############################################
 
-    # Ejecuta Polybar con la configuración "mybar" (asegúrate de tener un archivo de configuración en ~/.config/polybar/config)
+    # Ejecuta Polybar con la configuración 'mybar' (asegúrate de tener un archivo en ~/.config/polybar/config)
     exec --no-startup-id polybar mybar
 
     ############################################
