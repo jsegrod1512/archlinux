@@ -105,7 +105,10 @@ EOF
 # 7. Instalación de i3, Polybar y utilidades adicionales
 echo "Instalando i3, Polybar y utilidades..."
 arch-chroot /mnt /bin/bash <<'EOF'
-pacman -Sy --noconfirm i3-wm i3status polybar dmenu rofi
+pacman -Sy --noconfirm i3-gaps i3-wm i3status polybar dmenu rofi
+
+# Configurar .xinitrc para que inicie i3 automáticamente al usar startx
+su - $USER -c 'echo "exec i3" > ~/.xinitrc'
 EOF
 
 echo "Instalación completa. Ahora viene la configuración de i3 y Polybar."
