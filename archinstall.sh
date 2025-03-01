@@ -108,7 +108,7 @@ arch-chroot /mnt /bin/bash <<EOF
 
     # 6.11. Crear configuración personalizada de i3 para evitar el prompt inicial
     su - $USER -c 'mkdir -p ~/.config/i3'
-    su - usuario -c 'cat <<EOT > ~/.config/i3/config
+    su - usuario -c "cat <<'EOT' > ~/.config/i3/config
     ############################################
     #       Configuración predeterminada i3
     ############################################
@@ -172,7 +172,7 @@ arch-chroot /mnt /bin/bash <<EOF
 
     # Establecer wallpaper con feh (opcional)
     # exec --no-startup-id feh --bg-scale /ruta/a/tu/wallpaper.jpg
-    EOT'
+    EOT"
 EOF
 
 echo "===== [7/7] FINALIZANDO INSTALACION ====="
