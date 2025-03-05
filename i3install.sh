@@ -44,7 +44,7 @@ exec --no-startup-id polybar mybar
 bindsym $mod+Return exec $term
 
 # Abrir dmenu (centrado)
-bindsym $mod+d exec --no-startup-id ~/.config/dmenu_center.sh
+bindsym $mod+d exec dmenu_run -c
 
 # Cerrar ventana
 bindsym $mod+Shift+q kill
@@ -69,20 +69,18 @@ bindsym $mod+Shift+e exit
 #       Configuración de gaps (i3-gaps)
 ############################################
 
-gaps inner 5
-gaps outer 5
+gaps inner 2
+gaps outer 2
 
 ############################################
 #       Otros comandos y ajustes
 ############################################
 
-# Puedes añadir aquí más bindings o comandos para iniciar otras aplicaciones,
-# por ejemplo, lanzar rofi:
-# bindsym $mod+d exec rofi -show run
+# Abrir menu apagado/reiniciar/cerrar sesion
+bindsym $mod+Shift+p exec ~/.config/i3/menu_shutdown.sh
 
-# Establecer wallpaper con feh (opcional)
-# exec --no-startup-id feh --bg-scale /ruta/a/tu/wallpaper.jpg
-EOF
+# Realizar copia de seguridad
+bindsym $mod+Shift+b exec ~/.config/i3/backup_config.sh
 
 echo "El archivo de configuración de i3 se ha creado en: $CONFIG_FILE"
 
