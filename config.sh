@@ -12,25 +12,10 @@ mkdir -p ~/.config/scripts
 cp -r scripts/* ~/.config/scripts/
 chmod +x ~/.config/scripts/*
 
-# Para evitar problemas al ejecutar scripts desde $HOME/.config/scripts
-# lo añadimos al PATH
-DIR="$HOME/.config/scripts"
-# Verifica si el directorio existe
-if [ -d "$DIR" ]; then
-    # Añade el directorio al PATH si no está ya presente
-    if [[ ":$PATH:" != *":$DIR:"* ]]; then
-        echo "Añadiendo $DIR al PATH..."
-        export PATH="$PATH:$DIR"
-        echo 'export PATH="$PATH:'"$DIR"'"' >> "$HOME/.bashrc"
-        # Recarga el .bashrc para aplicar los cambios en la sesión actual
-        source "$HOME/.bashrc"
-        echo "Directorio añadido y PATH actualizado."
-    else
-        echo "El directorio $DIR ya está en el PATH."
-    fi
-else
-    echo "El directorio $DIR no existe."
-fi
+
+grep -q "neofetch" "$HOME/.bashrc" || echo "neofetch" >> "$HOME/.bashrc"
+# Recarga el .bashrc para aplicar los cambios en la sesión actual
+source "$HOME/.bashrc"
 
 # Configurar el backup en cron
 BACKUP_SCRIPT="$HOME/.config/scripts/backup_config.sh"
