@@ -46,7 +46,7 @@ exec --no-startup-id dunst
 bindsym $mod+Return exec $term
 
 # Abrir dmenu (centrado)
-bindsym $mod+d exec dmenu_run -c
+bindsym $mod+d exec dmenu_run -c -l 20 -bw 3
 
 # Cerrar ventana
 bindsym $mod+Shift+q kill

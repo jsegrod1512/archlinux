@@ -32,6 +32,6 @@ sed -i 's/#define DYNAMIC_OPTIONS_PATCH 0/#define DYNAMIC_OPTIONS_PATCH 1/' patc
 # Puedes agregar más sed para otros parches que te parezcan útiles.
 
 # 3. Compilar e instalar (usa sudo si es necesario para la instalación)
-make clean install
+sudo make clean install
 
 echo "dmenu-flexipatch se ha instalado correctamente con los módulos activados."

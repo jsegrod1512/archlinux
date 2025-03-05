@@ -21,7 +21,7 @@ realizar_backup() {
 # Verificar si el script se ejecuta desde cron o manualmente
 if [ -t 1 ]; then
     # Ejecución manual
-    respuesta=$(echo -e "Sí\nNo" | dmenu -p "¿Deseas realizar una copia de seguridad?")
+    respuesta=$(echo -e "Sí\nNo" | dmenu -c -bw 3 -p "¿Deseas realizar una copia de seguridad?")
     if [ "$respuesta" == "Sí" ]; then
         realizar_backup
     else
