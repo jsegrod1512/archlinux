@@ -24,6 +24,8 @@ else
     echo "El archivo de configuración ya existe: $CONFIG_FILE"
 fi
 
+sed -i 's/\[bar\/example\]/[bar\/mybar]/' "$CONFIG_FILE"
+
 # Reiniciar Polybar: si ya está corriendo, lo matamos y lo reiniciamos
 if pgrep -x "polybar" > /dev/null; then
     echo "Polybar se está ejecutando. Reiniciando..."
