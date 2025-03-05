@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /tmp
 
-rm -rf dmenu-flexipatch
+sudo rm -rf dmenu-flexipatch
 
 git clone https://github.com/bakkeby/dmenu-flexipatch.git
 
