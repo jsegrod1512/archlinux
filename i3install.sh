@@ -79,10 +79,10 @@ gaps outer 2
 ############################################
 
 # Abrir menu apagado/reiniciar/cerrar sesion
-bindsym $mod+Shift+p exec ~/.config/i3/menu_shutdown.sh
+bindsym $mod+Shift+p exec ~/.config/scripts/menu_shutdown.sh
 
 # Realizar copia de seguridad
-bindsym $mod+Shift+b exec ~/.config/i3/backup_config.sh
+bindsym $mod+Shift+b exec ~/.config/scripts/backup_config.sh
 EOF
 
 echo "El archivo de configuración de i3 se ha creado en: $CONFIG_FILE"

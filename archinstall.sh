@@ -111,7 +111,7 @@ XEOF
     systemctl enable lightdm
 
     # 6.10. Instalar i3, Polybar y utilidades
-    pacman -Sy --noconfirm i3-gaps i3-wm i3status polybar dmenu alacritty wget cronie libnotify dunst
+    pacman -Sy --noconfirm i3-gaps i3-wm i3status polybar dmenu alacritty wget cronie libnotify dunst pavucontrol
 
     # 6.11. Aplicaciones adicionales
     pacman -Sy firefox rofi notification-daemon

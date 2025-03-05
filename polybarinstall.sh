@@ -24,6 +24,7 @@ else
     echo "El archivo de configuración ya existe: $CONFIG_FILE"
 fi
 
+# Cambiamos el nombre example por mybar
 sed -i 's/\[bar\/example\]/[bar\/mybar]/' "$CONFIG_FILE"
 
 # Reiniciar Polybar: si ya está corriendo, lo matamos y lo reiniciamos
@@ -34,7 +35,7 @@ if pgrep -x "polybar" > /dev/null; then
     sleep 2
 fi
 
-# Iniciar Polybar con la configuración "mybar" (debes tener definido ese perfil en el archivo de configuración)
+# Iniciar Polybar con la configuración "mybar"
 echo "Iniciando Polybar..."
 polybar mybar &
 
