@@ -81,6 +81,7 @@ bindsym $mod+Shift+p exec ~/.config/i3/menu_shutdown.sh
 
 # Realizar copia de seguridad
 bindsym $mod+Shift+b exec ~/.config/i3/backup_config.sh
+EOF
 
 echo "El archivo de configuración de i3 se ha creado en: $CONFIG_FILE"
 
