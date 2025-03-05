@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Establece un PATH completo
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
 # Directorio de origen
 directorio_origen="$HOME/.config"
 

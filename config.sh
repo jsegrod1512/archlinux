@@ -3,17 +3,9 @@
 # Asegurar permisos de ejecución
 chmod +x ./*
 
-SCRIPTS=("dmenu_config.sh" "i3install.sh" "polybarinstall.sh")
-
-# Ejecutar los scripts en el orden especificado
-for script in "${SCRIPTS[@]}"; do
-    if [[ -f "$script" ]]; then
-        echo "Ejecutando: $script"
-        sudo bash "$script"
-    else
-        echo "Advertencia: No se encontró $script"
-    fi
-done
+./dmenu_config.sh
+./polybarinstall.sh
+./i3install.sh
 
 # Mover los scripts a su ubicación final en ~/.config/scripts
 mkdir -p ~/.config/scripts

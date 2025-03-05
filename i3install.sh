@@ -36,6 +36,8 @@ font pango:monospace 10
 # Ejecuta Polybar con la configuración 'mybar'
 exec --no-startup-id polybar mybar
 
+exec --no-startup-id dunst
+
 ############################################
 #       Atajos de teclado básicos
 ############################################
