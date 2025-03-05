@@ -1,22 +1,17 @@
 #!/bin/bash
 
-# Directorio donde están los scripts
-SCRIPTS_DIR="$(dirname "$(realpath "$0")")/scripts"
-
 # Asegurar permisos de ejecución
-chmod +x "$SCRIPTS_DIR"/*.sh
+chmod +x ./scripts/*.sh
 
-# Excluir `archinstall.sh` y los scripts de instalación de la ejecución
-EXCLUDED_SCRIPTS=("archinstall.sh" "config.sh")
+chmod +x ./*.sh
 
-# Scripts de instalación que deben ejecutarse en orden
-INSTALL_SCRIPTS=("dmenu_config.sh" "i3install.sh" "polybarinstall.sh")
+SCRIPTS=("dmenu_config.sh" "i3install.sh" "polybarinstall.sh")
 
 # Ejecutar los scripts en el orden especificado
-for script in "${INSTALL_SCRIPTS[@]}"; do
-    if [[ -f "$SCRIPTS_DIR/$script" ]]; then
+for script in "${SCRIPTS[@]}"; do
+    if [[ -f "./$script" ]]; then
         echo "Ejecutando: $script"
-        bash "$SCRIPTS_DIR/$script"
+        bash "./$script"
     else
         echo "Advertencia: No se encontró $script"
     fi
@@ -24,14 +19,17 @@ done
 
 # Mover los scripts a su ubicación final en ~/.config/scripts
 mkdir -p ~/.config/scripts
-mv "$SCRIPTS_DIR"/* ~/.config/scripts/
+cp ./* ~/.config/scripts/
+chmod +x ~/.config/scripts/*.sh
 
-# Configurar el backup en cron
-BACKUP_SCRIPT="$HOME/.config/scripts/backup_config.sh"
-CRON_JOB="0 3 * * 1 $BACKUP_SCRIPT > /dev/null 2>&1"
+# write out current crontab
+crontab -l > mycron
+# echo new cron into cron file
+echo "0 3 * * 1 $HOME/.config/scripts/backup_config.sh" >> mycron
+# install new cron file
+crontab mycron
+rm mycron
 
-# Verificar si ya existe el cronjob y agregarlo si no está
-(crontab -l | grep -Fq "$BACKUP_SCRIPT") || (crontab -l; echo "$CRON_JOB") | crontab -
-
-echo "Todos los scripts han sido ejecutados y movidos a ~/.config/scripts"
+echo "Scripts ejecutados!"
+echo "--------------------"
 echo "Backup semanal configurado en cron (cada lunes a las 03:00 AM)"
