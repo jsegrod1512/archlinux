@@ -15,12 +15,12 @@ mkdir -p "$directorio_destino"
 # Función para realizar la copia de seguridad
 realizar_backup() {
     tar -czf "$directorio_destino/$archivo_respaldo" -C "$directorio_origen" .
-    notify-send "Copia de seguridad completada" "La carpeta scripts ha sido respaldada en $directorio_destino/$archivo_respaldo"
+    notify-send "Copia de seguridad completada" "La carpeta .config ha sido respaldada en $directorio_destino/$archivo_respaldo"
 }
 
-# Verificar si el script se ejecuta desde cron o manualmente
-if [ -t 1 ]; then
-    # Ejecución manual
+# Si estamos en una sesión gráfica y se detecta i3, mostramos el menú con dmenu;
+# de lo contrario, se ejecuta el respaldo sin confirmación (por ejemplo, en cron).
+if [ -n "$DISPLAY" ] && pgrep -x i3 > /dev/null; then
     respuesta=$(echo -e "Sí\nNo" | dmenu -c -bw 3 -p "¿Deseas realizar una copia de seguridad?")
     if [ "$respuesta" == "Sí" ]; then
         realizar_backup
@@ -28,6 +28,5 @@ if [ -t 1 ]; then
         notify-send "Copia de seguridad cancelada" "No se ha realizado ninguna copia de seguridad."
     fi
 else
-    # Ejecución desde cron (sin confirmación)
     realizar_backup
 fi

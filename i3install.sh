@@ -43,7 +43,7 @@ exec --no-startup-id dunst
 ############################################
 
 # Abrir la terminal
-bindsym $mod+Return exec $term
+bindsym $mod+Return exec $term -e bash -c "neofetch; exec bash"
 
 # Abrir dmenu (centrado)
 bindsym $mod+d exec dmenu_run -c -l 20 -bw 3
