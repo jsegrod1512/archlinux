@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directorio de origen
-directorio_origen="$HOME/scripts"
+directorio_origen="$HOME/.config"
 
 # Directorio de destino para las copias de seguridad
 directorio_destino="$HOME/copias_seguridad"

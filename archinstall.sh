@@ -15,7 +15,6 @@ ROOT_PASSWORD="root"            # Contraseña de root
 USER="usuario"                  # Nombre de usuario
 USER_PASSWORD="usuario"         # Contraseña de ese usuario
 USE_BTRFS="no"                  # "yes" para formatear la raíz con btrfs
-SWAP_SIZE="2GiB"                # Tamaño de la partición swap
 
 echo "===== [1/7] CREANDO PARTICIONES ====="
 parted --script "$DISK" mklabel msdos

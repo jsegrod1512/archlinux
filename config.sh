@@ -17,7 +17,7 @@ done
 
 # Mover los scripts a su ubicación final en ~/.config/scripts
 mkdir -p ~/.config/scripts
-cp ./* ~/.config/scripts/
+cp -r scripts/* ~/.config/scripts/
 chmod +x ~/.config/scripts/*
 
 # Configurar el backup en cron
