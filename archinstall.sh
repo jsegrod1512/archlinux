@@ -115,10 +115,10 @@ XEOF
 
     # 6.11. Aplicaciones adicionales
     # Audio
-    pacman -Sy pipewire pipewire-pulse pipewire-alsa pipewire-jack pavucontrol wireplumber
+    pacman -Sy --noconfirm pipewire pipewire-pulse pipewire-alsa pipewire-jack pavucontrol wireplumber
 
     # Más
-    pacman -Sy firefox rofi notification-daemon neovim neofetch
+    pacman -Sy --noconfirm firefox rofi notification-daemon neovim neofetch
 EOF
 
 echo "===== [7/7] FINALIZANDO INSTALACION ====="
