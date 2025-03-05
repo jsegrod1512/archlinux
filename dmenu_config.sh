@@ -9,10 +9,10 @@ git clone https://git.suckless.org/dmenu
 cd dmenu
 
 # Descarga el parche de centrado
-wget https://tools.suckless.org/dmenu/patches/center/dmenu-center-20200111-8cd37e1.diff
+wget https://tools.suckless.org/dmenu/patches/center/dmenu-center-20240616-36c3d68.diff
 
 # Aplica el parche
-patch < dmenu-center-20200111-8cd37e1.diff
+patch < dmenu-center-20240616-36c3d68.diff
 
 # Compila dmenu
 make
