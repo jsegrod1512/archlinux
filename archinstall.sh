@@ -14,7 +14,7 @@ TIMEZONE="Europe/Madrid"        # Zona horaria
 ROOT_PASSWORD="root"            # Contraseña de root
 USER="usuario"                  # Nombre de usuario
 USER_PASSWORD="usuario"         # Contraseña de ese usuario
-USE_BTRFS="no"                  # "yes" para formatear la raíz con btrfs
+USE_BTRFS="no"                  # "yes" para formatear la partición raíz con btrfs
 
 echo "===== [1/7] CREANDO PARTICIONES ====="
 parted --script "$DISK" mklabel msdos
@@ -118,7 +118,7 @@ XEOF
     pacman -Sy --noconfirm pipewire pipewire-pulse pipewire-alsa pipewire-jack pavucontrol wireplumber
 
     # Más
-    pacman -Sy --noconfirm firefox rofi notification-daemon neovim neofetch
+    pacman -Sy --noconfirm firefox rofi notification-daemon neovim neofetch tree
 EOF
 
 echo "===== [7/7] FINALIZANDO INSTALACION ====="

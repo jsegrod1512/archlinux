@@ -4,7 +4,7 @@
 opciones="Apagar\nReiniciar\nCerrar sesión"
 
 # Mostrar el menú y capturar la selección
-seleccion=$(echo -e $opciones | dmenu -fn 'pango-20' -l 10 -bw 3 -i -p "Selecciona una acción:")
+seleccion=$(echo -e $opciones | dmenu -fn 'pango-20' -bw 3 -i -p "Selecciona una acción:")
 
 # Ejecutar la acción correspondiente
 case "$seleccion" in
