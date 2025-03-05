@@ -91,7 +91,7 @@ XEOF
     # 6.5. Crear usuario y agregarlo al grupo wheel para sudo
     useradd -m -G wheel $USER
     echo "$USER:$USER_PASSWORD" | chpasswd
-    sed -i 's/^[[:space:]]*#\s*%wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
+    sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
     # 6.6. Instalar y habilitar NetworkManager
     pacman -Sy --noconfirm networkmanager
