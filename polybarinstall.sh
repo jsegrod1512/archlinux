@@ -11,13 +11,13 @@ echo "Creando directorio de configuración en: $CONFIG_DIR"
 mkdir -p "$CONFIG_DIR"
 
 # Copiar archivo de configuración de ejemplo, si aún no existe, desde una ruta típica.
-# Nota: La ubicación del archivo de ejemplo puede variar; en Arch suele estar en /usr/share/doc/polybar/example/
+# Nota: La ubicación del archivo de ejemplo puede variar; en Arch suele estar en /usr/share/doc/polybar/examples/
 if [ ! -f "$CONFIG_FILE" ]; then
-    if [ -f "/usr/share/doc/polybar/example/config.ini" ]; then
+    if [ -f "/usr/share/doc/polybar/examples/config.ini" ]; then
         echo "Copiando archivo de configuración de ejemplo a: $CONFIG_FILE"
-        cp "/usr/share/doc/polybar/example/config.ini" "$CONFIG_FILE"
+        cp "/usr/share/doc/polybar/examples/config.ini" "$CONFIG_FILE"
     else
-        echo "No se encontró el archivo de ejemplo en /usr/share/doc/polybar/example/config.ini."
+        echo "No se encontró el archivo de ejemplo en /usr/share/doc/polybar/examples/config.ini."
         echo "Por favor, revisa la ubicación del archivo de ejemplo de Polybar."
     fi
 else
