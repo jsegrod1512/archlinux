@@ -17,7 +17,4 @@ case "$seleccion" in
     "Cerrar sesión")
         i3-msg exit
         ;;
-    *)
-        echo "Opción no válida"
-        ;;
 esac

@@ -9,7 +9,7 @@ SCRIPTS=("dmenu_config.sh" "i3install.sh" "polybarinstall.sh")
 for script in "${SCRIPTS[@]}"; do
     if [[ -f "$script" ]]; then
         echo "Ejecutando: $script"
-        bash "$script"
+        sudo bash "$script"
     else
         echo "Advertencia: No se encontró $script"
     fi
