@@ -82,3 +82,6 @@ gaps outer 5
 EOF
 
 echo "El archivo de configuración de i3 se ha creado en: $CONFIG_FILE"
+
+echo "Reiniciando i3 para aplicar la configuración..."
+i3-msg restart
