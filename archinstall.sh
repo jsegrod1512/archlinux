@@ -73,6 +73,16 @@ arch-chroot /mnt /bin/bash <<EOF
     echo "LANG=es_ES.UTF-8" > /etc/locale.conf
     loadkeys es
 
+    # Se crea el archivo de configuración para que Xorg use el teclado español
+    cat << 'XEOF' > /etc/X11/xorg.conf.d/00-keyboard.conf
+      Section "InputClass"
+        Identifier "system-keyboard"
+        MatchIsKeyboard "on"
+        Option "XkbLayout" "es"
+        Option "XkbModel" "pc105"
+      EndSection
+    XEOF
+
     # 6.3. Configurar hostname
     echo "$HOSTNAME" > /etc/hostname
 
@@ -103,9 +113,6 @@ arch-chroot /mnt /bin/bash <<EOF
 
     # 6.10. Instalar i3, Polybar y utilidades
     pacman -Sy --noconfirm i3-gaps i3-wm i3status polybar dmenu rofi alacritty
-
-    # 6.11. Configura el teclado también en la interfaz
-    setxkbmap es
 EOF
 
 echo "===== [7/7] FINALIZANDO INSTALACION ====="
