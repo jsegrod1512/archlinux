@@ -21,7 +21,7 @@ realizar_backup() {
 # Si estamos en una sesión gráfica y se detecta i3, mostramos el menú con dmenu;
 # de lo contrario, se ejecuta el respaldo sin confirmación (por ejemplo, en cron).
 if [ -n "$DISPLAY" ] && pgrep -x i3 > /dev/null; then
-    respuesta=$(echo -e "Sí\nNo" | dmenu -c -bw 3 -p "¿Deseas realizar una copia de seguridad?")
+    respuesta=$(echo -e "Sí\nNo" | dmenu -fn 'pango-20' -bw 3 -p "¿Deseas realizar una copia de seguridad?")
     if [ "$respuesta" == "Sí" ]; then
         realizar_backup
     else

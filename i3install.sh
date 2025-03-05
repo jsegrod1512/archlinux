@@ -71,8 +71,8 @@ bindsym $mod+Shift+e exit
 #       Configuración de gaps (i3-gaps)
 ############################################
 
-gaps inner 2
-gaps outer 2
+gaps inner 5
+gaps outer 5
 
 ############################################
 #       Otros comandos y ajustes
