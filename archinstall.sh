@@ -112,7 +112,10 @@ arch-chroot /mnt /bin/bash <<EOF
     systemctl enable lightdm
 
     # 6.10. Instalar i3, Polybar y utilidades
-    pacman -Sy --noconfirm i3-gaps i3-wm i3status polybar dmenu rofi alacritty
+    pacman -Sy --noconfirm i3-gaps i3-wm i3status polybar dmenu rofi alacritty xorg-xdpyinfo
+
+    # 6.11. Aplicaciones adicionales
+    pacman -Sy firefox
 EOF
 
 echo "===== [7/7] FINALIZANDO INSTALACION ====="

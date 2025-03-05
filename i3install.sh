@@ -43,6 +43,9 @@ exec --no-startup-id polybar mybar
 # Abrir la terminal
 bindsym $mod+Return exec $term
 
+# Abrir dmenu (centrado)
+bindsym $mod+d exec --no-startup-id ~/.config/dmenu_center.sh
+
 # Cerrar ventana
 bindsym $mod+Shift+q kill
 
