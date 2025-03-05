@@ -73,14 +73,14 @@ arch-chroot /mnt /bin/bash <<EOF
     loadkeys es
 
     # Se crea el archivo de configuración para que Xorg use el teclado español
-    cat << 'XEOF' > /etc/X11/xorg.conf.d/00-keyboard.conf
-      Section "InputClass"
-        Identifier "system-keyboard"
-        MatchIsKeyboard "on"
-        Option "XkbLayout" "es"
-        Option "XkbModel" "pc105"
-      EndSection
-    XEOF
+cat << 'XEOF' > /etc/X11/xorg.conf.d/00-keyboard.conf
+Section "InputClass"
+  Identifier "system-keyboard"
+  MatchIsKeyboard "on"
+  Option "XkbLayout" "es"
+  Option "XkbModel" "pc105"
+EndSection
+XEOF
 
     # 6.3. Configurar hostname
     echo "$HOSTNAME" > /etc/hostname
