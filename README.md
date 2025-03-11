@@ -54,7 +54,7 @@ Este repositorio contiene una serie de scripts para automatizar la instalación 
 
 Clona el repositorio en tu sistema:
 ```bash
-git clone https://github.com/tu_usuario/tu_repositorio.git
+git clone https://github.com/jsegrod1512/archlinux.git
 cd tu_repositorio
 ```
 
